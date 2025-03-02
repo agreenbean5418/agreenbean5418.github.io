@@ -19,21 +19,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="回归和分类是两种问题，回归用来预测多少，可以输出连续的值；分类则用来预测属于哪一类。 分类也可以分为硬分类和软分类，硬分类就是指定属于某种类别，软分类还要输出属于某种类别的概率是多少。 softmax回归其实是一种软分类问题，输入为样本属性，输出为样本属于某类的概率，最终取预测概率最大的类别作为预测类别。 本文主要基于神经网络实现softmax回归。 网络架构 数据 假设有n个样本，每个样本有d个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2025/02/26/hello-world/index.html">
+<meta property="og:title" content="softmax回归">
+<meta property="og:url" content="http://example.com/2025/03/02/softmax%E5%9B%9E%E5%BD%92/index.html">
 <meta property="og:site_name" content="lvbean&#39;s blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="回归和分类是两种问题，回归用来预测多少，可以输出连续的值；分类则用来预测属于哪一类。 分类也可以分为硬分类和软分类，硬分类就是指定属于某种类别，软分类还要输出属于某种类别的概率是多少。 softmax回归其实是一种软分类问题，输入为样本属性，输出为样本属于某类的概率，最终取预测概率最大的类别作为预测类别。 本文主要基于神经网络实现softmax回归。 网络架构 数据 假设有n个样本，每个样本有d个">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-02-26T12:09:03.173Z">
-<meta property="article:modified_time" content="2025-02-26T12:09:03.173Z">
+<meta property="article:published_time" content="2025-03-02T12:00:26.000Z">
+<meta property="article:modified_time" content="2025-03-02T13:05:35.577Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - lvbean&#39;s blog</title>
+  <title>softmax回归 - lvbean&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="softmax回归"></span>
           
         </div>
 
@@ -210,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-26 20:09" pubdate>
-          2025年2月26日 晚上
+        <time datetime="2025-03-02 20:00" pubdate>
+          2025年3月2日 晚上
         </time>
       </span>
     
@@ -222,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18 字
+          506 字
         
       </span>
     
@@ -233,7 +234,7 @@
         
         
         
-          1 分钟
+          5 分钟
         
       </span>
     
@@ -270,25 +271,29 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">softmax回归</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <p>回归和分类是两种问题，回归用来预测多少，可以输出连续的值；分类则用来预测属于哪一类。</p>
+<p>分类也可以分为硬分类和软分类，硬分类就是指定属于某种类别，软分类还要输出属于某种类别的概率是多少。</p>
+<p>softmax回归其实是一种软分类问题，输入为样本属性，输出为样本属于某类的概率，最终取预测概率最大的类别作为预测类别。</p>
+<p>本文主要基于神经网络实现softmax回归。</p>
+<h1>网络架构</h1>
+<h2 id="数据">数据</h2>
+<p>假设有n个样本，每个样本有d个属性，共分为q个类别。那么输入矩阵为X (n x d),每一行代表一个样本，每一列代表一种属性。</p>
+<h3 id="独热编码">独热编码</h3>
+<p>样本的标签（label）y采用独热编码（one-hot encoding）,独热编码就是样本的标签y是一个向量，y的分量个数等于类别的个数。对于某个样本来说，只有样本类别的位置为1，其余元素都为0。<br>
+那么样本的标签矩阵Y就是一个n行q列的矩阵，其中每一行只有一个元素为1。</p>
+<h2 id="网络参数">网络参数</h2>
+<p>对于每个类别，都有一个与线性回归类似的weight向量w和偏置b，那么k个类别的参数共同组成权重矩阵W（d行q列），每一列代表一种类别的weight向量。<br>
+同理，每个类别的偏置b作为偏置向量<strong>b</strong>的一个分量。</p>
+<h2 id="计算">计算</h2>
+<p>网络的输出矩阵记作 O（还未经过softmax处理），O为一个n行，q列的矩阵，计算表达式为：<br>
+$$ \mathbf{O} = X\mathbf{W} + \boldsymbol{b} $$<br>
+O的含义是：每一行代表一个样本的预测结果，这一行第k列的值的大小就反映了此样本与该类别的weight向量的相似程度（加上bias后）。值越大说明属于该类的可能性就越大。</p>
+<h1>softmax</h1>
 
                 
               </div>
@@ -298,6 +303,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="print-no-link">#机器学习</a>
+      
+    </div>
+  
 </div>
 
 
@@ -306,8 +318,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://example.com/2025/02/26/hello-world/</div>
+      <div>softmax回归</div>
+      <div>http://example.com/2025/03/02/softmax回归/</div>
     </div>
     <div class="license-meta">
       
@@ -319,7 +331,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年2月26日</div>
+          <div>2025年3月2日</div>
         </div>
       
       
@@ -351,15 +363,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/02/softmax%E5%9B%9E%E5%BD%92/" title="softmax回归">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">softmax回归</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2025/02/26/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

@@ -4,11 +4,30 @@
   
   
   <entry>
+    <title>softmax回归</title>
+    <link href="/2025/03/02/softmax%E5%9B%9E%E5%BD%92/"/>
+    <url>/2025/03/02/softmax%E5%9B%9E%E5%BD%92/</url>
+    
+    <content type="html"><![CDATA[<p>回归和分类是两种问题，回归用来预测多少，可以输出连续的值；分类则用来预测属于哪一类。</p><p>分类也可以分为硬分类和软分类，硬分类就是指定属于某种类别，软分类还要输出属于某种类别的概率是多少。</p><p>softmax回归其实是一种软分类问题，输入为样本属性，输出为样本属于某类的概率，最终取预测概率最大的类别作为预测类别。</p><p>本文主要基于神经网络实现softmax回归。</p><h1>网络架构</h1><h2 id="数据">数据</h2><p>假设有n个样本，每个样本有d个属性，共分为q个类别。那么输入矩阵为X (n x d),每一行代表一个样本，每一列代表一种属性。</p><h3 id="独热编码">独热编码</h3><p>样本的标签（label）y采用独热编码（one-hot encoding）,独热编码就是样本的标签y是一个向量，y的分量个数等于类别的个数。对于某个样本来说，只有样本类别的位置为1，其余元素都为0。<br>那么样本的标签矩阵Y就是一个n行q列的矩阵，其中每一行只有一个元素为1。</p><h2 id="网络参数">网络参数</h2><p>对于每个类别，都有一个与线性回归类似的weight向量w和偏置b，那么k个类别的参数共同组成权重矩阵W（d行q列），每一列代表一种类别的weight向量。<br>同理，每个类别的偏置b作为偏置向量<strong>b</strong>的一个分量。</p><h2 id="计算">计算</h2><p>网络的输出矩阵记作 O（还未经过softmax处理），O为一个n行，q列的矩阵，计算表达式为：<br>$$ \mathbf{O} = X\mathbf{W} + \boldsymbol{b} $$<br>O的含义是：每一行代表一个样本的预测结果，这一行第k列的值的大小就反映了此样本与该类别的weight向量的相似程度（加上bias后）。值越大说明属于该类的可能性就越大。</p><h1>softmax</h1>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>机器学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2025/02/26/hello-world/"/>
     <url>/2025/02/26/hello-world/</url>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start">Quick Start</h2><h3 id="Create-a-new-post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
     
     
     
